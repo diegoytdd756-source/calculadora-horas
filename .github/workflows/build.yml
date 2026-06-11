@@ -35,6 +35,12 @@ jobs:
           sed -i 's/android.minapi = 24/android.minapi = 26/g' buildozer.spec
           sed -i 's/#android.ndk = 25b/android.ndk = 25b/g' buildozer.spec
 
+      - name: Accept Android SDK Licenses Automatically
+        run: |
+          mkdir -p ~/.buildozer/android/platform/android-sdk/licenses
+          echo -e "24a3327a06831742c91c6511a4749866c13b1e37\n893a0a6d393b545a1d65fdd202225b441d0d2ec4\n24333f8a63b6825ea9c5514f83c2829b004d1fee\na5c1c04e3159b92920f7222d3be3a7ad5d6ee55a\nd56f5187479451eabf01fb7431de55433224d198\n2f38c566547de0f00dfa047d38a0b3112283f5d8\nc12a99c3474492b9b44a059d264857bb134433e4" > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-license
+          echo -e "854fc9e13d68578d2a37c6a219d11357b55c53eff" > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-preview-license
+
       - name: Build with Buildozer
         run: buildozer -v android debug
 
